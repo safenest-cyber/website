@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Shield, Server, Mail, Phone, AlertCircle, Home, Laptop, Linkedin, MessageCircle, Brain, Target } from 'lucide-react';
+import { Shield, Server, Mail, Phone, AlertCircle, Home, Laptop, Linkedin, MessageCircle, Brain, Target, Tool, Cpu } from 'lucide-react';
 
 function SolutionCard({ icon: Icon, title, features, secondaryFeatures }) {
   return (
@@ -75,9 +75,13 @@ function App() {
     "Home Network Security Setup",
     "Password Management Solutions",
     "Secure WiFi Configuration",
-    "Regular Security Updates"
+    "Custom PC Building Service",
+    "Professional PC Repair",
+    "Data Recovery & Backup",
+    "Hardware Security Solutions",
+    "System Performance Optimization & debloating"
   ];
-
+  
   const homeSecondaryFeatures = [
     {
       icon: <Brain className="text-blue-400" size={20} />,
@@ -87,6 +91,16 @@ function App() {
         "Safe Browsing Habits",
         "Social Media Privacy",
         "Device Protection Tips"
+      ]
+    },
+    {
+      icon: <Cpu className="text-blue-400" size={20} />,
+      title: "PC Build & Repair",
+      items: [
+        "Custom Gaming PC Builds",
+        "Hardware Diagnostics",
+        "Component Upgrades",
+        "Performance Tuning"
       ]
     }
   ];
@@ -278,33 +292,70 @@ function App() {
                 </button>
               </div>
             </div>
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Name"
-                className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
-              />
-              <select className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none">
-                <option value="">Select Service Type</option>
-                <option value="pentest">Penetration Testing</option>
-                <option value="audit">Security Audit</option>
-                <option value="training">Security Training</option>
-                <option value="consultation">Free Consultation</option>
-              </select>
-              <textarea
-                placeholder="Message"
-                rows={4}
-                className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
-              ></textarea>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition">
-                Send Message
-              </button>
-            </form>
+            <form 
+  className="space-y-4"
+  action="https://formspree.io/f/mdkazody"
+  method="POST"
+  onSubmit={(e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        alert('Message sent successfully!');
+        form.reset();
+      } else {
+        alert('Error sending message. Please try again.');
+      }
+    });
+  }}
+>
+  <input
+    type="text"
+    name="name"
+    placeholder="Name"
+    required
+    className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
+  />
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    required
+    className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
+  />
+  <select 
+    name="service"
+    required
+    className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
+  >
+    <option value="">Select Service Type</option>
+    <option value="pentest">Penetration Testing</option>
+    <option value="audit">Security Audit</option>
+    <option value="training">Security Training</option>
+    <option value="consultation">Free Consultation</option>
+    <option value="pc-build">Custom PC Build</option>
+    <option value="pc-repair">PC Repair</option>
+  </select>
+  <textarea
+    name="message"
+    placeholder="Message"
+    rows={4}
+    required
+    className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
+  ></textarea>
+  <button 
+    type="submit"
+    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition w-full"
+  >
+    Send Message
+  </button>
+</form>
           </div>
         </div>
       </section>
