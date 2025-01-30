@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Shield, Server, Mail, Phone, AlertCircle, Home, Laptop, Linkedin, MessageCircle, Brain, Target, Tool, Cpu } from 'lucide-react';
 
-function SolutionCard({ icon: Icon, title, features, secondaryFeatures }) {
+function SolutionCard({ icon: Icon, title, features, secondaryFeatures, onLearnMore }) {
   return (
     <div className="bg-gray-800 p-8 rounded-lg flex-1">
       <div className="flex items-center space-x-3 mb-6">
@@ -38,14 +38,13 @@ function SolutionCard({ icon: Icon, title, features, secondaryFeatures }) {
           </div>
         </div>
       )}
-      <button className="mt-8 w-full bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition flex items-center justify-center space-x-2">
+      <button onClick={onLearnMore} className="mt-8 w-full bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition flex items-center justify-center space-x-2">
         <span>Learn More</span>
         <Shield size={16} />
       </button>
     </div>
   );
 }
-
 function App() {
   useEffect(() => {
     // JavaScript canary token
@@ -68,6 +67,10 @@ function App() {
         document.head.appendChild(style);
     }
   }, []);
+
+  const scrollToContact = () => {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  };
 
   const homeSolutions = [
     "Smart Home Security Assessment",
@@ -153,11 +156,11 @@ function App() {
       {/* Hero Section */}
       <header className="relative bg-gradient-to-b from-gray-900 to-gray-800 py-16">
         <nav className="container mx-auto px-6 flex items-center justify-between mb-16">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-4">
             <img 
               src="/logo.png"
               alt="SafeNest Logo" 
-              className="h-12"
+              className="h-20"
             />
             <span className="text-xl font-bold">SafeNest</span>
           </div>
@@ -168,7 +171,9 @@ function App() {
               <a href="#about" className="hover:text-blue-400 transition">About</a>
               <a href="#contact" className="hover:text-blue-400 transition">Contact</a>
             </div>
-            <button className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg transition">
+            <button 
+              onClick={scrollToContact}           
+              className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg transition">  
               Free Consultation
             </button>
           </div>
@@ -190,17 +195,18 @@ function App() {
               title="Home Solutions"
               features={homeSolutions}
               secondaryFeatures={homeSecondaryFeatures}
+              onLearnMore={scrollToContact}
             />
             <SolutionCard
               icon={Server}
               title="Business Solutions"
               features={businessSolutions}
               secondaryFeatures={businessSecondaryFeatures}
+              onLearnMore={scrollToContact}
             />
           </div>
         </div>
       </header>
-
       {/* About Section */}
       <section id="about" className="py-20 bg-gray-800">
         <div className="container mx-auto px-6">
@@ -218,6 +224,7 @@ function App() {
           </div>
         </div>
       </section>
+
       {/* Services Section */}
       <section id="services" className="py-20 bg-gray-900">
         <div className="container mx-auto px-6">
@@ -244,7 +251,6 @@ function App() {
           </div>
         </div>
       </section>
-
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-800">
         <div className="container mx-auto px-6">
@@ -293,75 +299,75 @@ function App() {
               </div>
             </div>
             <form 
-  className="space-y-4"
-  action="https://formspree.io/f/mdkazody"
-  method="POST"
-  onSubmit={(e) => {
-    e.preventDefault();
-    const form = e.target;
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        alert('Message sent successfully!');
-        form.reset();
-      } else {
-        alert('Error sending message. Please try again.');
-      }
-    });
-  }}
->
-  <input
-    type="text"
-    name="name"
-    placeholder="Name"
-    required
-    className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
-  />
-  <input
-    type="email"
-    name="email"
-    placeholder="Email"
-    required
-    className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
-  />
-  <select 
-    name="service"
-    required
-    className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
-  >
-    <option value="">Select Service Type</option>
-    <option value="pentest">Penetration Testing</option>
-    <option value="audit">Security Audit</option>
-    <option value="training">Security Training</option>
-    <option value="consultation">Free Consultation</option>
-    <option value="pc-build">Custom PC Build</option>
-    <option value="pc-repair">PC Repair</option>
-  </select>
-  <textarea
-    name="message"
-    placeholder="Message"
-    rows={4}
-    required
-    className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
-  ></textarea>
-  <button 
-    type="submit"
-    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition w-full"
-  >
-    Send Message
-  </button>
-</form>
+              className="space-y-4"
+              action="https://formspree.io/f/mdkazody"
+              method="POST"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.target;
+                fetch(form.action, {
+                  method: 'POST',
+                  body: new FormData(form),
+                  headers: {
+                    'Accept': 'application/json'
+                  }
+                }).then(response => {
+                  if (response.ok) {
+                    alert('Message sent successfully!');
+                    form.reset();
+                  } else {
+                    alert('Error sending message. Please try again.');
+                  }
+                });
+              }}
+            >
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                required
+                className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+                className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
+              />
+              <select 
+                name="service"
+                required
+                className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
+              >
+                <option value="">Select Service Type</option>
+                <option value="pentest">Penetration Testing</option>
+                <option value="audit">Security Audit</option>
+                <option value="training">Security Training</option>
+                <option value="consultation">Free Consultation</option>
+                <option value="pc-build">Custom PC Build</option>
+                <option value="pc-repair">PC Repair</option>
+              </select>
+              <textarea
+                name="message"
+                placeholder="Message"
+                rows={4}
+                required
+                className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-400 focus:outline-none"
+              ></textarea>
+              <button 
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition w-full"
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-     <footer className="bg-gray-900 py-8">
+      <footer className="bg-gray-900 py-8">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 mb-4 md:mb-0">
@@ -379,4 +385,3 @@ function App() {
 }
 
 export default App;
-  
