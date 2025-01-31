@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Shield, Server, Mail, Phone, AlertCircle, Home, Laptop, Linkedin, MessageCircle, Brain, Target, Tool, Cpu } from 'lucide-react';
+import { Shield, Server, Mail, Phone, AlertCircle, Home, Laptop, Linkedin, MessageCircle, Brain, Target, Cpu } from 'lucide-react';
 
 function SolutionCard({ icon: Icon, title, features, secondaryFeatures, onLearnMore }) {
   return (
@@ -45,6 +45,7 @@ function SolutionCard({ icon: Icon, title, features, secondaryFeatures, onLearnM
     </div>
   );
 }
+
 function App() {
   useEffect(() => {
     // JavaScript canary token
@@ -160,9 +161,8 @@ function App() {
             <img 
               src="/logo.png"
               alt="SafeNest Logo" 
-              className="h-20"
-            />
-            <span className="text-xl font-bold">SafeNest</span>
+              className="h-60 mr-15"/>
+            {/* Removed the SafeNest text */}
           </div>
           <div className="flex items-center space-x-8">
             <div className="hidden md:flex space-x-8">
@@ -179,33 +179,35 @@ function App() {
           </div>
         </nav>
 
-        <div className="container mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-5xl font-bold mb-6">
-              Protecting You Against People Like Us
-            </h1>
-            <p className="text-xl text-gray-300">
-              Expert cybersecurity solutions for businesses and homes, delivered by certified ethical hackers
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <SolutionCard
-              icon={Home}
-              title="Home Solutions"
-              features={homeSolutions}
-              secondaryFeatures={homeSecondaryFeatures}
-              onLearnMore={scrollToContact}
-            />
-            <SolutionCard
-              icon={Server}
-              title="Business Solutions"
-              features={businessSolutions}
-              secondaryFeatures={businessSecondaryFeatures}
-              onLearnMore={scrollToContact}
-            />
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h1 className="text-4xl font-bold mb-2">
+            SafeNest Cyber Consulting
+          </h1>
+          <h2 className="text-5xl font-bold mb-6">
+            Protecting You Against People Like Us
+          </h2>
+          <p className="text-xl text-gray-300">
+            Expert cybersecurity solutions for businesses and homes, delivered by certified ethical hackers
+          </p>
         </div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <SolutionCard
+            icon={Home}
+            title="Home Solutions"
+            features={homeSolutions}
+            secondaryFeatures={homeSecondaryFeatures}
+            onLearnMore={scrollToContact}
+          />
+          <SolutionCard
+            icon={Server}
+            title="Business Solutions"
+            features={businessSolutions}
+            secondaryFeatures={businessSecondaryFeatures}
+            onLearnMore={scrollToContact}
+          />
+         </div>
+        
       </header>
       {/* About Section */}
       <section id="about" className="py-20 bg-gray-800">
