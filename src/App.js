@@ -139,8 +139,8 @@ function App() {
       ]
     }
   ];
-  const phoneNumber = "+26777570440";
-  const formattedPhone = "+267 77570440";
+  const phoneNumber = "+267 72 829 828";
+  const formattedPhone = "+267 72 829 828";
   const email = "info@safenest.co.bw";
   const linkedinUrl = "https://www.linkedin.com/company/safenest-cyber-consulting";
 
