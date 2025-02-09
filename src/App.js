@@ -305,25 +305,36 @@ function App() {
               className="space-y-4"
               action="https://formspree.io/f/mdkazody"
               method="POST"
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
                 const form = e.target;
-                fetch(form.action, {
-                  method: 'POST',
-                  body: new FormData(form),
-                  headers: {
-                    'Accept': 'application/json'
-                  }
-                }).then(response => {
+                try {
+                  const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                      'Accept': 'application/json'
+                    }
+                  });
                   if (response.ok) {
                     alert('Message sent successfully!');
                     form.reset();
                   } else {
+                    const errorData = await response.json();
+                    console.error('Error sending message:', errorData);
                     alert('Error sending message. Please try again.');
                   }
-                });
+                } catch (error) {
+                  console.error('Error sending message:', error);
+                  alert('Error sending message. Please try again.');
+                }
               }}
             >
+              <input
+                type="hidden"
+                name="_cc"
+                value={email}
+              />
               <input
                 type="text"
                 name="name"
