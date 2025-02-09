@@ -303,7 +303,7 @@ function App() {
             </div>
             <form 
               className="space-y-4"
-              action="https://formspree.io/f/mdkazody"
+              action="https://formspree.io/f/xdkadbrn"
               method="POST"
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -322,7 +322,7 @@ function App() {
                   } else {
                     const errorData = await response.json();
                     console.error('Error sending message:', errorData);
-                    alert('Error sending message. Please try again.');
+                    alert(`Error sending message: ${errorData.message || 'Please try again.'}`);
                   }
                 } catch (error) {
                   console.error('Error sending message:', error);
