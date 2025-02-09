@@ -69,6 +69,8 @@ function App() {
     }
   }, []);
 
+  const email = "info@safenest.co.bw"; // Define the email variable
+
   const scrollToContact = () => {
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
   };
@@ -139,9 +141,8 @@ function App() {
       ]
     }
   ];
-  const phoneNumber = "+267 72 829 828";
-  const formattedPhone = "+267 72 829 828";
-  const email = "info@safenest.co.bw";
+  const phoneNumber = "+26772829828";
+  const formattedPhone = "+267 72829828";
   const linkedinUrl = "https://www.linkedin.com/company/safenest-cyber-consulting";
 
   const openWhatsApp = () => {
@@ -159,7 +160,7 @@ function App() {
         <nav className="container mx-auto px-6 flex items-center justify-between mb-16">
           <div className="flex items-center space-x-4">
             <img 
-              src="/logo.png"
+              src="/logo.png" // Ensure this path is correct
               alt="SafeNest Logo" 
               className="h-60 mr-15"/>
             {/* Removed the SafeNest text */}
